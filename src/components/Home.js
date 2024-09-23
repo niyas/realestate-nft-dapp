@@ -17,12 +17,12 @@ const Home = ({ home, provider, account, escrow, togglePop }) => {
 
     const[owner, setOwner] = useState(null)
 
-    console.log(account);
 
     const fetchDetails = async () => {
         // -- Buyer
         const buyer = await escrow.buyer(home.id)
         setBuyer(buyer)
+   
 
         const hasBought = await escrow.approval(home.id, buyer)
         setHasBought(hasBought)

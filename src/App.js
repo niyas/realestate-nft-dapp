@@ -37,22 +37,16 @@ function App() {
 
     for(var i=1; i< totalSupply; i++) {
       const uri = await realEstate.tokenURI(i)
-      console.log(uri)
       const response = await fetch(uri)
-      console.log(response)
       const metadata = await response.json()
       
       homes.push(metadata)
     }
 
     setHomes(homes)
-    console.log(homes)
 
     const escrow = new ethers.Contract(config[network.chainId].escrow.address, Escrow, provider)
     setEscrow(escrow)
-
-
-    console.log(config[network.chainId].realEstate.address, config[network.chainId].escrow.address)
 
     window.ethereum.on('accountsChanged', async() => {
       const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
